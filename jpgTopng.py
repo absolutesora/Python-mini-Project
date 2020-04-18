@@ -2,6 +2,10 @@ import sys
 import os
 from PIL import Image
 
+# this is to make jpg file to PNG
+# When running the program, user must give two parameters in command.
+# First is current directory of photos and second is new folders for converted images.
+# e.g. jpgTopng.py [Current Directory Name] [New Directory Name]
 # grab first and second argument
 
 current_folder = sys.argv[1]
@@ -22,3 +26,5 @@ for filename in os.listdir(f'{current_folder}/'):
     clean_name = os.path.splitext(filename)[0]
     resize.save(f'{new_folder}/{clean_name}.png','png')
     print(f'conversion done for {filename}, Width:{width}, Height:{height}!')
+
+# testing if git commit has been reflected
