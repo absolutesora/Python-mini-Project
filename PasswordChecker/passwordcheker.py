@@ -32,4 +32,8 @@ def main(args):
 
 
 if __name__ == "__main__":
-    main(sys.argv[1:])
+    # Read text file and read per line per word.
+    with open('test.txt', 'r') as data:
+        for line in data.readlines():
+            line = line.splitlines() # this makes the string as one array.
+            main(line)
