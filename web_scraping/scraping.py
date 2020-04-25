@@ -12,20 +12,23 @@ dates = soup.select('.meta.pubDate')
 
 def filter_jw(article, dates):
     jw_list = []
-    for idx, item in enumerate(article):
-        # pub = article[idx].getText().replace('        ', '')
-        pub = item.getText().replace('\n', '').replace('       ', '')
-        href = item.get('href', None)
-        date = dates[idx].getText()
-        if ('/en/news/' in href):
-            jw_list.append({'Date': date, 'Title': pub, 'Link': href})
+    fieldname = ['Date', 'Title', 'Link']
+    with open('jw_scraped.csv', 'w', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerow(fieldname)
+
+        for idx, item in enumerate(article):
+            pub = item.getText().replace('\n', '').replace('       ', '')
+            href = item.get('href', None)
+            date = dates[idx].getText()
+            if ('/en/news/' in href):
+                jw_list.append({'Date': date, 'Title': pub, 'Link': href})
+                writer.writerow([date, pub, 'https://jw.org' + href])
+
     return jw_list
 
 #csv_file = open('jw_scraped.csv', 'w')
 pprint.pprint(filter_jw(article, dates))
-
-with open('jw_scraped.csv', 'w') as file:
-
 
 # What to try:
 # 1. output to CSV file
