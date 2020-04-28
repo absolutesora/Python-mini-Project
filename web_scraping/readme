@@ -1,0 +1,2 @@
+sraping.py is to scrape JW latest news and output the Date, Title and Link so user can promptly see the news in list format. 
+This will ovewrite the old file if there is existing file. 
